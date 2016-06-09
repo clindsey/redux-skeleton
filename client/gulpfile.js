@@ -2,16 +2,8 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var path = require('path');
+var ava = require('gulp-ava');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-gulp.task('copy', function () {
-  gulp.src(['app/assets/**/*'])
-  .pipe(gulp.dest('public'));
-});
-
-gulp.task('build-dev', ['webpack'], function () {
-  gulp.watch(['app/**/*'], ['copy', 'webpack']);
-});
 
 /*
 const productionPlugins = [
@@ -24,12 +16,28 @@ const productionPlugins = [
 ];
 */
 
-gulp.task('webpack', function (callback) {
+gulp.task('default', ['build-dev']);
+
+gulp.task('build-dev', ['copy', 'webpack', 'test'], function () {
+  gulp.watch(['app/**/*'], ['test']);
+});
+
+gulp.task('copy', function () {
+  gulp.src(['app/assets/**/*'])
+  .pipe(gulp.dest('public'));
+});
+
+gulp.task('test', ['webpack'], function () {
+  gulp.src('test/unit/index.js')
+  .pipe(ava());
+});
+
+gulp.task('webpack', ['copy'], function (callback) {
   webpack({
     entry: './app/index.js',
     output: {
       path: path.join(__dirname, '/public'),
-      publicPath: '/views-player/',
+      publicPath: '/redux-skeleton/',
       filename: 'bundle.js'
     },
     plugins: [
@@ -76,5 +84,3 @@ gulp.task('webpack', function (callback) {
     callback();
   });
 });
-
-gulp.task('default', ['copy', 'build-dev']);

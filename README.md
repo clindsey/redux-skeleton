@@ -1,3 +1,3 @@
-# views-player
+# redux-skeleton
 
 HTML5
