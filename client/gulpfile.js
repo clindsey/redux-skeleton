@@ -19,7 +19,7 @@ const productionPlugins = [
 gulp.task('default', ['build-dev']);
 
 gulp.task('build-dev', ['copy', 'webpack', 'test'], function () {
-  gulp.watch(['app/**/*'], ['test']);
+  gulp.watch(['app/**/*', 'test/**/*'], ['test']);
 });
 
 gulp.task('copy', function () {
@@ -29,7 +29,11 @@ gulp.task('copy', function () {
 
 gulp.task('test', ['webpack'], function () {
   gulp.src('test/unit/index.js')
-  .pipe(ava());
+  .pipe(ava())
+  .on('error', function (error) {
+    console.log('AVA testing error: ', error.toString());
+    this.emit('end');
+  });
 });
 
 gulp.task('webpack', ['copy'], function (callback) {

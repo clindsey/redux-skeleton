@@ -1,5 +1,8 @@
-import test from 'ava';
+import jsdom from 'jsdom';
 
-test('foo', t => {
-  t.pass();
-});
+global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.window = document.parentWindow;
+
+import './reducers/clickCounter';
+import './actions/clickCounter';
+import './components/ClickCounter';

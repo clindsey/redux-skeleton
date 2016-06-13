@@ -6,6 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "ava": {
+    "concurrency": 5,
+    "failFast": true,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clindsey/reduxSkeleton.git"
@@ -56,6 +64,8 @@
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.4",
+    "jsdom": "^9.2.1",
+    "jsx-test-helpers": "^1.1.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "normalizr": "^2.1.0",
