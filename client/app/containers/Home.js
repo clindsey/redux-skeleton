@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ClickCounter from '../components/ClickCounter';
 import {counterIncrement} from '../actions/clickCounter';
 
-class Home extends React.Component {
+export class Home extends React.Component {
   render () {
     const name = this.props.name || 'World';
     return (

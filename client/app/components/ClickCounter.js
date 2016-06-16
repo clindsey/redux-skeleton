@@ -1,6 +1,11 @@
 import React from 'react';
 
 class ClickCounter extends React.Component {
+  static propTypes = {
+    count: React.PropTypes.number.isRequired,
+    counterIncrement: React.PropTypes.func.isRequired
+  };
+
   _onClick () {
     this.props.counterIncrement();
   }
@@ -13,15 +18,10 @@ class ClickCounter extends React.Component {
             onClick={this._onClick.bind(this)}
             type="button"
         >{'click me'}</button>
-        <h3>{this.props.count}</h3>
+        <h3 className="click-counter__count">{this.props.count}</h3>
       </div>
     );
   }
 }
-
-ClickCounter.propTypes = {
-  count: React.PropTypes.number.isRequired,
-  counterIncrement: React.PropTypes.func.isRequired
-};
 
 export default ClickCounter;
