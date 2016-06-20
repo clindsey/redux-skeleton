@@ -25,7 +25,7 @@ gulp.task('test', ['webpack'], function () {
   });
 });
 
-gulp.task('webpack', ['copy'], function (callback) {
+gulp.task('webpack', ['copy'], function () {
   return gulp.src(buildPaths.ALL)
     .pipe(stream(webpackConfig))
     .pipe(gulp.dest(buildPaths.DEST_BUILD));

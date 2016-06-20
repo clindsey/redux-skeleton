@@ -9,7 +9,7 @@ installEslint:
 	npm install -g eslint
 
 dev-client:
-	(cd client && exec ../node_modules/.bin/gulp)
+	./node_modules/.bin/gulp
 
 dev-server:
 	./node_modules/.bin/babel-node server/app/index.js
