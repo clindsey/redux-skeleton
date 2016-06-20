@@ -7,7 +7,6 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import configureStore from './stores/configureStore';
 import {Provider} from 'react-redux';
 
-import config from './config';
 import App from './containers/App';
 import Home from './containers/Home';
 
@@ -19,7 +18,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route
           component={App}
-          path={`/${config.locationRoot}`}
+          path={`/`}
       >
         <IndexRoute
             component={Home}
